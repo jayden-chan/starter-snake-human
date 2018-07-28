@@ -8,6 +8,9 @@ import (
 	"os"
 )
 
+var inputQueue KeyQueue
+var lastKey rune = 'w'
+
 func main() {
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/", fs)
@@ -23,10 +26,11 @@ func main() {
 
 	// Add filename into logging messages
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-
 	log.Printf("Running server on port %s...\n", port)
 	log.Printf("Keep this terminal focused to recieve input from the keyboard.\nUse the arrow keys to move the snake.")
+
 	go http.ListenAndServe(":"+port, nil)
+
 	err := keyboard.Open()
 	if err != nil {
 		panic(err)
@@ -41,7 +45,7 @@ func main() {
 		} else if key == keyboard.KeyEsc {
 			break
 		}
-		fmt.Printf("You pressed: %q\r\n", char)
-		currentKey = char
+		// fmt.Printf("You pressed: %q\r\n", char)
+		inputQueue.Enqueue(char)
 	}
 }

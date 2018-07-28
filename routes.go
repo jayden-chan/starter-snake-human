@@ -6,8 +6,6 @@ import (
 	"net/http"
 )
 
-var currentKey rune = 'w'
-
 type StartRes struct {
 	Color string `json:"color,omitempty"`
 	Taunt string `json:"taunt,omitempty"`
@@ -23,10 +21,13 @@ type MoveRes struct {
 // the width and height of the board.
 func Start(res http.ResponseWriter, req *http.Request) {
 	log.Printf("Start req recieved")
+	inputQueue.Clear()
+	lastKey = 'w'
 
 	res.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(res).Encode(StartRes{
-		Color: "#84D5E2",
+		// Color: "#84D5E2",
+		Color: "#222222",
 		Taunt: "NOT A HUMAN...",
 	})
 
@@ -37,7 +38,14 @@ func Start(res http.ResponseWriter, req *http.Request) {
 // move response here.
 func Move(res http.ResponseWriter, req *http.Request) {
 	move := MoveRes{}
-	switch currentKey {
+	var key rune
+	if inputQueue.Size() > 0 {
+		key = inputQueue.Dequeue()
+		lastKey = key
+	} else {
+		key = lastKey
+	}
+	switch key {
 	case 'w':
 		move = MoveRes{Move: "up"}
 	case 'a':
