@@ -17,7 +17,7 @@ $ ./starter-snake-human
 ```
 
 ## Usage
-Use the W A S D keys to move the snake around. Pres ESC to exit.
+Use the W A S D keys to move the snake around. Pres ESC to exit. You must focus the terminal window in order for the program to receive the keyboard input.
 
 ### Arguments
 To change the color of the snake:
