@@ -26,8 +26,8 @@ func Start(res http.ResponseWriter, req *http.Request) {
 
 	res.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(res).Encode(StartRes{
-		Color: "#84D5E2",
-		Taunt: "NOT A HUMAN...",
+		Color: snakeColor,
+		Taunt: snakeTaunt,
 	})
 
 	res.Write([]byte("\n"))

@@ -10,8 +10,8 @@ import (
 
 var inputQueue KeyQueue
 var lastKey rune = 'w'
-var snakeColor string
-var snakeTaunt string
+var snakeColor string = "#84D5E2"
+var snakeTaunt string = "NOT A HUMAN..."
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
@@ -20,6 +20,16 @@ func main() {
 	http.HandleFunc("/start", Start)
 	http.HandleFunc("/move", Move)
 	http.HandleFunc("/end", End)
+
+	for i, _ := range os.Args {
+		if i == 0 {
+			continue
+		}
+		if os.Args[i] == "--color" && len(os.Args) > i+1 {
+			snakeColor = os.Args[i+1]
+			log.Println("Snake color set to", snakeColor)
+		}
+	}
 
 	port := os.Getenv("PORT")
 	if port == "" {
