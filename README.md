@@ -2,7 +2,7 @@
 Takes input from the standard in to allow you to train your snakes
 
 ## Installation
-Download the appropriate executable from the `/bin` directory and run it from your terminal.
+Download the appropriate executable from `release` tab in GitHub and run it in your terminal.
 
 ### Windows
 From the directory containing the executable:
