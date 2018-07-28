@@ -27,7 +27,6 @@ func Start(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(res).Encode(StartRes{
 		Color: "#84D5E2",
-		// Color: "#222222",
 		Taunt: "NOT A HUMAN...",
 	})
 
@@ -39,22 +38,14 @@ func Start(res http.ResponseWriter, req *http.Request) {
 func Move(res http.ResponseWriter, req *http.Request) {
 	move := MoveRes{}
 	var key rune
+
 	if inputQueue.Size() > 0 {
 		key = inputQueue.Dequeue()
-		switch {
-		case key == 'w' && lastKey == 's':
-			key = 's'
-		case key == 'a' && lastKey == 'd':
-			key = 'd'
-		case key == 's' && lastKey == 'w':
-			key = 'w'
-		case key == 'd' && lastKey == 'a':
-			key = 'a'
-		}
 		lastKey = key
 	} else {
 		key = lastKey
 	}
+
 	switch key {
 	case 'w':
 		move = MoveRes{Move: "up"}

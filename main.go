@@ -10,6 +10,8 @@ import (
 
 var inputQueue KeyQueue
 var lastKey rune = 'w'
+var snakeColor string
+var snakeTaunt string
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
@@ -45,7 +47,17 @@ func main() {
 		} else if key == keyboard.KeyEsc {
 			break
 		}
-		// fmt.Printf("You pressed: %q\r\n", char)
-		inputQueue.Enqueue(char)
+		switch {
+		case char == 'w' && lastKey == 's':
+			break
+		case char == 'a' && lastKey == 'd':
+			break
+		case char == 's' && lastKey == 'w':
+			break
+		case char == 'd' && lastKey == 'a':
+			break
+		default:
+			inputQueue.Enqueue(char)
+		}
 	}
 }
