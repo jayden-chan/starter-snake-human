@@ -10,9 +10,17 @@ From the directory containing the executable:
 > starter-snake-human.exe
 ```
 
-### Mac OS / Linux
+### Mac OS
 From the directory containing the executable:
 ```
+$ chmod +x starter-snake-human.dms
+$ ./starter-snake-human.dms
+```
+
+### Linux
+From the directory containing the executable:
+```
+$ chmod +x starter-snake-human
 $ ./starter-snake-human
 ```
 
