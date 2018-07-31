@@ -6,11 +6,15 @@ import (
 	"net/http"
 )
 
+// StartRes contains the relevant JSON elements for a /start
+// response
 type StartRes struct {
 	Color string `json:"color,omitempty"`
 	Taunt string `json:"taunt,omitempty"`
 }
 
+// MoveRes contrains the relevant JSON elements for a /move
+// response
 type MoveRes struct {
 	Move string `json:"move"`
 }

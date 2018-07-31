@@ -9,9 +9,9 @@ import (
 )
 
 var inputQueue KeyQueue
-var lastKey rune = 'w'
-var snakeColor string = "#84D5E2"
-var snakeTaunt string = "NOT A HUMAN..."
+var lastKey = 'w'
+var snakeColor = "#84D5E2"
+var snakeTaunt = "NOT A HUMAN..."
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
@@ -23,8 +23,9 @@ func main() {
 
 	port := "9000"
 
-	// Parse --color command line argument
-	for i, _ := range os.Args {
+	// Parse command line arguments
+	for i := range os.Args {
+		// The first argument is the program name
 		if i == 0 {
 			continue
 		}
@@ -65,7 +66,7 @@ func main() {
 			break
 		}
 		// If the provided move will result in the snake going back
-		// on itself, don't add it to the queue
+		// on itself, don't add it to the queue.
 		switch {
 		case char == 'w' && lastKey == 's':
 			break
